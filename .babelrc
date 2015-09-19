@@ -1,0 +1,24 @@
+{
+  "stage": 0,
+  "env": {
+    "production": {
+      "plugins": [
+        "flow-comments",
+        "closure-elimination",
+        "uglify:after"
+      ],
+      "blacklist": [
+        "flow"
+      ]
+    },
+    "development": {
+      "plugins": [
+        "jsx-to-idom/babel-plugin",
+        "typecheck"
+      ]
+    }
+  },
+  "blacklist": [
+    "react"
+  ]
+}
