@@ -46,7 +46,6 @@ function parseChild(child) {
 }
 
 function parseTree(idomTree) {
-  debug;
   if (`object` === typeof idomTree && Array.isArray(idomTree.children) && idomTree.children.length > 0) {
       // jsx-ir object with children
     idomTree.children.map(parseTree);
