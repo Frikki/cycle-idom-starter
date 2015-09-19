@@ -46,24 +46,21 @@ function parseChild(child) {
 }
 
 function parseTree(idomTree) {
-  // Is an observable
-
+  debug;
   if (`object` === typeof idomTree && Array.isArray(idomTree.children) && idomTree.children.length > 0) {
       // jsx-ir object with children
     idomTree.children.map(parseTree);
-
     return Rx.Observable.just(idomTree);
+  }
+
+  if (typeof idomTree.subscribe === 'function') {
+    return idomTree.map(parseTree);
   }
 
   if (`object` === typeof idomTree || `string` === typeof idomTree) {
     // Regular jsx-ir with no children
     // Or is a text node;
     return Rx.Observable.just(idomTree)
-  }
-
-  if (typeof idomTree.subscribe === 'function') {
-    console.log("observable"); // This is how I know I'm getting the observable
-    return idomTree.map(parseTree);
   }
 }
 
